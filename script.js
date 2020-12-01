@@ -1,8 +1,10 @@
 var marker;
 var map;
-var diDisplay = new google.maps.DirectionsRenderer();
 var pos;
+var GoogleLink;
+var diDisplay;
 function initMap() {
+  document.getElementById("btLink").disabled = true;
     map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: -34.397, lng: 150.644 },
       zoom: 15,
@@ -51,12 +53,15 @@ function getMap()
         {
           lat = JSON.stringify(data[0]["lat"]);
           lng = JSON.stringify(data[0]["lng"]);
+          GoogleLink="@"+lat+","+lng+",";
           gotoMap(lat,lng);
         }
       });
   }
   else alert("โปรดใส่ชื่อสถานที่");
+  document.getElementById("btLink").disabled = false;
 }
+
 function gotoMap(bdlat,bdlng)
 {
   Selfmarker.setMap(null);
@@ -85,24 +90,10 @@ function gotoMap(bdlat,bdlng)
       diDisplay.setDirections(response);
     }
   });
-  /*diService.route(
-  {
-    //origin: document.getElementById('start').value,
-    origin: pos,
-    // destination: marker.getPosition(),
-    destination:
-    {
-      lat: parseFloat(bdlat),
-      lng: parseFloat(bdlng)
-    },
-    travelMode: google.maps.TravelMode.DRIVING
-  },function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-        diRenderer.setDirections(response);
-        console.log(response);
-    } else {
-        alert('Directions request failed due to ' + status);
-    }
-  });*/
+}
+
+function linkmap()
+{
+  window.location="https://www.google.com/maps/"+GoogleLink+"16.11z";
 }
 
