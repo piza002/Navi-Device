@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Navigation Device</title>
+    <script
+      async src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+      defer
+    ></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="script.js"></script>
+    </head>
+  <body>
+    <h1 id="HeadText">Navigation Device</h1>
+    <div class="input">
+      <form>
+        <label for="tbSearch">Building name:</label>
+        <input type="text" id="tbSearch" name="build"><br><br>
+        <input type="button" id="btSubmit" onclick="getMap()" value="Submit">
+      </form>      
+    </div>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+  </body>
+</html>
