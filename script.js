@@ -2,6 +2,7 @@ var marker;
 var map;
 var pos;
 var GoogleLink;
+var SelfLink;
 var diDisplay;
 function initMap() {
   document.getElementById("btLink").disabled = true;
@@ -18,6 +19,7 @@ function initMap() {
             lat: parseFloat(position.coords.latitude),
             lng: parseFloat(position.coords.longitude),
           };
+          SelfLink = position.coords.latitude + "," + position.coords.longitude;
           infoWindow.open(map);
           map.setCenter(pos);
           Selfmarker = new google.maps.Marker({
@@ -53,7 +55,7 @@ function getMap()
         {
           lat = JSON.stringify(data[0]["lat"]);
           lng = JSON.stringify(data[0]["lng"]);
-          GoogleLink="@"+lat+","+lng+",";
+          GoogleLink=lat+","+lng;
           gotoMap(lat,lng);
         }
       });
@@ -94,6 +96,5 @@ function gotoMap(bdlat,bdlng)
 
 function linkmap()
 {
-  window.location="https://www.google.com/maps/"+GoogleLink+"16.11z";
+  window.location="https://www.google.com/maps/dir/"+SelfLink+"/"+GoogleLink+"/@"+GoogleLink+",16z";
 }
-
