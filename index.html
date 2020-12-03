@@ -15,14 +15,15 @@
       <form>
         <label for="tbSearch">Building name:</label>
         <input type="text" id="tbSearch" name="build"><br><br>
-        <input type="button" id="btSubmit" onclick="getMap()" value="Submit">
+        <input type="button" id="btSubmit" onclick="getMap()" value="Submit">&nbsp;
+        <input type="button" id="btTalk" onclick="runSpeech()" value="Put to talk">&nbsp; <span id="action"></span> 
       </form>      
     </div>
     <h3>My Google Maps Demo</h3>
     <div id="map"></div>
     <br><br>
     <div class="link">
-      <input type="button" id="btLink" onclick="linkmap()" value="Open Google Map">
+      <img id = "imgmap" src="" alt="" title="" />
     </div>
   </body>
 </html>
