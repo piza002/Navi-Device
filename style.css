@@ -16,12 +16,12 @@ h3
     justify-content: center;
     align-items: center;
 }
-#btSubmit
+#btSubmit,#btTalk
 {
     display: flex;
     margin: auto;
 }
-#HeadText
+#HeadText,#action
 {
     display: flex;
     justify-content: center;
