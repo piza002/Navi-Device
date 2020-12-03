@@ -5,9 +5,7 @@ var GoogleLink;
 var SelfLink;
 var diDisplay;
 function initMap() {
-  document.getElementById("btLink").disabled = true;
     map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: -34.397, lng: 150.644 },
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
@@ -39,7 +37,9 @@ function initMap() {
   
 function getMap()
 {
+  document.getElementById("action").innerHTML="";
   var name = document.getElementById("tbSearch").value;
+  Selfmarker.setMap(null);
   if(name != "")
   {
     var url = "https://quiet-harbor-07073.herokuapp.com/getalias/"+name;
@@ -49,7 +49,8 @@ function getMap()
       {
         if(data == null)
         {
-          alert("ขออภัยด้วยไม่พบชื่อสถานที่นี้ในฐานข้อมูล");
+          alert("Sorry We didn't find this building name in our database");
+          clearmap();
         }
         else
         {
@@ -57,11 +58,15 @@ function getMap()
           lng = JSON.stringify(data[0]["lng"]);
           GoogleLink=lat+","+lng;
           gotoMap(lat,lng);
+          linkmap();
         }
       });
   }
-  else alert("โปรดใส่ชื่อสถานที่");
-  document.getElementById("btLink").disabled = false;
+  else 
+  {
+    alert("Please enter the building name");
+    clearmap();
+  }
 }
 
 function gotoMap(bdlat,bdlng)
@@ -96,5 +101,46 @@ function gotoMap(bdlat,bdlng)
 
 function linkmap()
 {
-  window.location="https://www.google.com/maps/dir/"+SelfLink+"/"+GoogleLink+"/@"+GoogleLink+",16z";
+  var maplink="https://www.google.com/maps/dir/"+SelfLink+"/"+GoogleLink+"/@"+GoogleLink+",16z";
+  document.getElementById("imgmap").src="https://api.qrserver.com/v1/create-qr-code/?data="+maplink+"&amp;size=100x100";
+}
+
+function clearmap()
+{
+  document.getElementById("imgmap").src="";
+  if(diDisplay != null) 
+  {
+    diDisplay.setMap(null);
+    diDisplay = null;
+  }
+  Selfmarker = new google.maps.Marker(
+  {
+    position: pos,
+    map: map,
+  });
+}
+
+function runSpeech() {
+  var output = document.getElementById("tbSearch");
+  var action = document.getElementById("action");
+  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+  var recognition = new SpeechRecognition();
+  recognition.onstart = function() 
+  {
+    action.innerHTML = "<small>listening, please speak...</small>";
+  };  
+  recognition.onspeechend = function() 
+  {
+    action.innerHTML = "<small>stopped listening, hope you are done...</small>";
+    recognition.stop();
+    getMap();
+
+  };
+  recognition.onresult = function(event) 
+  {
+    var transcript = event.results[0][0].transcript;
+    var confidence = event.results[0][0].confidence;
+    output.value = transcript;
+  };
+  recognition.start();
 }
