@@ -1,27 +1,9 @@
-.link
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.input
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-h3
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 #btSubmit,#btTalk
 {
     display: flex;
     margin: auto;
 }
-#HeadText,#action
+#HeadText,#action,h3,.input,.link
 {
     display: flex;
     justify-content: center;
