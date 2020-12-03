@@ -4,36 +4,39 @@ var pos;
 var GoogleLink;
 var SelfLink;
 var diDisplay;
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-    infoWindow = new google.maps.InfoWindow();
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          pos = {
-            lat: parseFloat(position.coords.latitude),
-            lng: parseFloat(position.coords.longitude),
-          };
-          SelfLink = position.coords.latitude + "," + position.coords.longitude;
-          infoWindow.open(map);
-          map.setCenter(pos);
-          Selfmarker = new google.maps.Marker({
-            position: pos,
-            map: map,
-          });
-        },
-        () => {
-          handleLocationError(true, infoWindow, map.getCenter());
-        }
-      );
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
+function initMap() 
+{
+  map = new google.maps.Map(document.getElementById("map"), 
+  {
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  infoWindow = new google.maps.InfoWindow();
+  if (navigator.geolocation) 
+  {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        pos = {
+          lat: parseFloat(position.coords.latitude),
+          lng: parseFloat(position.coords.longitude),
+        };
+        SelfLink = position.coords.latitude + "," + position.coords.longitude;
+        infoWindow.open(map);
+        map.setCenter(pos);
+        Selfmarker = new google.maps.Marker({
+          position: pos,
+          map: map,
+        });
+      },
+      () => {
+        handleLocationError(true, infoWindow, map.getCenter());
+      }
+    );
+  } else 
+  {
+    handleLocationError(false, infoWindow, map.getCenter());
   }
+}
   
 function getMap()
 {
@@ -46,21 +49,21 @@ function getMap()
     fetch(url)
     .then((resp)=>resp.json())
     .then(function(data)
+    {
+      if(data == null)
       {
-        if(data == null)
-        {
-          alert("Sorry We didn't find this building name in our database");
-          clearmap();
-        }
-        else
-        {
-          lat = JSON.stringify(data[0]["lat"]);
-          lng = JSON.stringify(data[0]["lng"]);
-          GoogleLink=lat+","+lng;
-          gotoMap(lat,lng);
-          linkmap();
-        }
-      });
+        alert("Sorry We didn't find this building name in our database");
+        clearmap();
+      }
+      else
+      {
+        lat = JSON.stringify(data[0]["lat"]);
+        lng = JSON.stringify(data[0]["lng"]);
+        GoogleLink=lat+","+lng;
+        gotoMap(lat,lng);
+        linkmap();
+      }
+    });
   }
   else 
   {
@@ -144,3 +147,4 @@ function runSpeech() {
   };
   recognition.start();
 }
+
