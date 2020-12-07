@@ -4,7 +4,8 @@ var pos;
 var GoogleLink;
 var SelfLink;
 var diDisplay;
-function initMap() 
+var recognition;
+function initMap()
 {
   map = new google.maps.Map(document.getElementById("map"), 
   {
@@ -136,14 +137,12 @@ function runSpeech() {
   {
     action.innerHTML = "<small>stopped listening, hope you are done...</small>";
     recognition.stop();
-    getMap();
-
   };
   recognition.onresult = function(event) 
   {
     var transcript = event.results[0][0].transcript;
-    var confidence = event.results[0][0].confidence;
     output.value = transcript;
+    getMap();
   };
   recognition.start();
 }
