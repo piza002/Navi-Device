@@ -13,17 +13,21 @@
     <h1 id="HeadText">Navigation Device</h1>
     <div class="input">
       <form>
-        <label for="tbSearch">Building name:</label>
-        <input type="text" id="tbSearch" name="build"><br><br>
-        <input type="button" id="btSubmit" onclick="getMap()" value="Submit">&nbsp;
-        <input type="button" id="btTalk" onclick="runSpeech()" value="Put to talk">&nbsp; <span id="action"></span> 
-      </form>      
+        <label for="tbSearch">Building name</label>
+        <input type="text" id="tbSearch" name="build">
+      </form>
     </div>
-    <h3>My Google Maps Demo</h3>
-    <div id="map"></div>
-    <br><br>
-    <div class="link">
-      <img id = "imgmap" src="" alt="" title="" />
+    <br>
+    <div class="bt"> 
+      <form>
+        <input type="button" id="btSubmit" onclick="getMap()" value="Submit">
+        <input type="button" id="btTalk" onclick="runSpeech()" value="Put to Talk"> <span id="action"></span>
+      </form>   
+    </div>
+    &nbsp;
+    <div class="mapall">
+      <div id="map"></div>&nbsp;
+      <img id = "imgmap" src="" alt="" title=""/>
     </div>
   </body>
 </html>
