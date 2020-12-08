@@ -2,12 +2,11 @@
 <html>
   <head>
     <title>Navigation Device</title>
+    <script type="text/javascript" src="script.js"></script>
     <script
-      async src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
-      defer
+      async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
     ></script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script src="script.js"></script>
     </head>
   <body>
     <h1 id="HeadText">Navigation Device</h1>
@@ -21,7 +20,7 @@
     <div class="bt"> 
       <form>
         <input type="button" id="btSubmit" onclick="getMap()" value="Submit">
-        <input type="button" id="btTalk" onclick="runSpeech()" value="Put to Talk"> <span id="action"></span>
+        <input type="button" id="btTalk" onclick="runSpeech()" value="Put to Talk">
       </form>   
     </div>
     &nbsp;
