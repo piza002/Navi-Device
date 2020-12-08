@@ -41,7 +41,6 @@ function initMap()
   
 function getMap()
 {
-  document.getElementById("action").innerHTML="";
   var name = document.getElementById("tbSearch").value;
   Selfmarker.setMap(null);
   if(name != "")
@@ -126,16 +125,13 @@ function clearmap()
 
 function runSpeech() {
   var output = document.getElementById("tbSearch");
-  var action = document.getElementById("action");
   var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
   var recognition = new SpeechRecognition();
   recognition.onstart = function() 
   {
-    action.innerHTML = "<small>listening, please speak...</small>";
   };  
   recognition.onspeechend = function() 
   {
-    action.innerHTML = "<small>stopped listening, hope you are done...</small>";
     recognition.stop();
   };
   recognition.onresult = function(event) 
