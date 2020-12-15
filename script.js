@@ -61,7 +61,7 @@ function getMap()
         lng = JSON.stringify(data[0]["lng"]);
         GoogleLink=lat+","+lng;
         gotoMap(lat,lng);
-        linkmap();
+        linkmap(data[0]["name"],name);
       }
     });
   }
@@ -102,10 +102,11 @@ function gotoMap(bdlat,bdlng)
   });
 }
 
-function linkmap()
+function linkmap(buildname,aliasname)
 {
   var maplink="https://www.google.com/maps/dir/"+SelfLink+"/"+GoogleLink+"/@"+GoogleLink+",16z";
   document.getElementById("imgmap").src="https://api.qrserver.com/v1/create-qr-code/?data="+maplink+"&amp;size=100x100";
+  document.getElementById("lbQr").innerHTML= "Your Destination (Marker B): " + buildname + ',' + aliasname;
 }
 
 function clearmap()
@@ -143,3 +144,39 @@ function runSpeech() {
   recognition.start();
 }
 
+function takeshot() { 
+  let div = document.getElementById("mapall");
+  html2canvas(div,
+    {
+      proxy: "server.js",
+      useCORS: true,
+    }).then( 
+    function (canvas) 
+    {
+      var dl = document.createElement("a");
+      dl.href = canvas.toDataURL();
+      dl.download = "imgmap";
+      document.body.appendChild(dl);
+      console.log(dl.href);
+      postdata('http://192.168.100.161:60146/print',{
+        "data" : dl.href
+      })
+    }) 
+}
+async function postdata(url='',data = {})
+{
+  const response = await fetch(url,
+  {
+    method: "POST",
+    mode: 'cors', 
+    cache: 'no-cache', 
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+    body:JSON.stringify(data)
+          
+  });
+}
