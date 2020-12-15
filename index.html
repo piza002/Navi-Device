@@ -6,6 +6,7 @@
     <script
       async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
     ></script>
+    <script src= "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"> </script> 
     <link rel="stylesheet" type="text/css" href="./style.css" />
     </head>
   <body>
@@ -21,12 +22,17 @@
       <form>
         <input type="button" id="btSubmit" onclick="getMap()" value="Submit">
         <input type="button" id="btTalk" onclick="runSpeech()" value="Put to Talk">
+        <input type="button" id="btImg" onclick="takeshot()" value="Print">
       </form>   
     </div>
     &nbsp;
-    <div class="mapall">
+    <div id="mapall">
       <div id="map"></div>&nbsp;
-      <img id = "imgmap" src="" alt="" title=""/>
+      <div class="qr">
+        <img id = "imgmap" src="" alt="" title=""/>
+        <br> 
+        <span id = "lbQr"></span>
+      </div>
     </div>
   </body>
 </html>
