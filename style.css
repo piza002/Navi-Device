@@ -13,7 +13,7 @@
     justify-content: center;
     align-items: center;
 }
-.mapall
+#mapall
 {
     display: flex;
     align-items: center;
@@ -31,7 +31,7 @@
 {
     height: 550px;
     width: 40%;
-    margin-left: 5%;
+    margin-left: 0%;
     border: 0px;
 	border-radius: 20px;
 }
@@ -46,7 +46,7 @@ body
     margin: 0;
     padding: 0;
 }
-#btSubmit,#btTalk
+#btSubmit,#btTalk,#btImg
 {
     font-family: 'JetBrains Mono','Cordia News';
     padding:10px;
@@ -65,3 +65,13 @@ input[type="text"]
     padding-right: 2.5%;
     font-size: 16px;
 }
+#imgmap
+{
+    position: relative;
+}
+#lbQr
+{
+    font-family: 'JetBrains Mono','Cordia News';
+    color: #000000;
+}
+
