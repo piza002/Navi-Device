@@ -29,7 +29,7 @@
 }
 #map 
 {
-    height: 550px;
+    height: 500px;
     width: 40%;
     margin-left: 0%;
     border: 0px;
@@ -45,6 +45,7 @@ body
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 #btSubmit,#btTalk,#btImg
 {
@@ -74,4 +75,3 @@ input[type="text"]
     font-family: 'JetBrains Mono','Cordia News';
     color: #000000;
 }
-
