@@ -12,8 +12,22 @@ function initMap()
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  infoWindow = new google.maps.InfoWindow();
-  if (navigator.geolocation) 
+  fetch('http://quiet-harbor-07073.herokuapp.com/getlatlng')
+  .then((resp)=>resp.json())
+  .then(function(data)
+  {
+    pos={
+      lat: parseFloat(data[0]['lat']),
+      lng: parseFloat(data[0]['lng'])
+    };
+    SelfLink = pos.lat + "," + pos.lng;
+        map.setCenter(pos);
+        Selfmarker = new google.maps.Marker({
+          position: pos,
+          map: map,
+        });
+  })
+  /*if (navigator.geolocation) 
   {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -36,7 +50,7 @@ function initMap()
   } else 
   {
     handleLocationError(false, infoWindow, map.getCenter());
-  }
+  }*/
 }
   
 function getMap()
