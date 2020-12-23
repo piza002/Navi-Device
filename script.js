@@ -12,7 +12,7 @@ function initMap()
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  fetch('http://127.0.0.1:8888/gps')
+  fetch('http://quiet-harbor-07073.herokuapp.com/getlatlng')
   .then((resp)=>resp.json())
   .then(function(data)
   {
@@ -50,6 +50,7 @@ function initMap()
   {
     handleLocationError(false, infoWindow, map.getCenter());
   }*/
+  document.getElementById("btImg").disabled=true;
 }
   
 function getMap()
@@ -75,6 +76,7 @@ function getMap()
         GoogleLink=lat+","+lng;
         gotoMap(lat,lng);
         linkmap(data[0]["name"],name);
+        document.getElementById("btImg").disabled=false;
       }
     });
   }
@@ -124,6 +126,7 @@ function linkmap(buildname,aliasname)
 
 function clearmap()
 {
+  document.getElementById("lbQr").innerHTML="";
   document.getElementById("imgmap").src="";
   if(diDisplay != null) 
   {
@@ -171,7 +174,7 @@ function takeshot() {
       dl.download = "imgmap";
       document.body.appendChild(dl);
       console.log(dl.href);
-      postdata('http://127.0.0.1:60146/print',{
+      postdata('http://192.168.100.161:60146/print',{
         "data" : dl.href
       })
       console.log("Complete");
@@ -195,4 +198,3 @@ async function postdata(url='',data = {})
           
   });
 }
-
