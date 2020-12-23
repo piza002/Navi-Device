@@ -12,7 +12,7 @@ function initMap()
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  fetch('http://quiet-harbor-07073.herokuapp.com/getlatlng')
+  fetch('http://127.0.0.1:8888/gps')
   .then((resp)=>resp.json())
   .then(function(data)
   {
@@ -174,7 +174,7 @@ function takeshot() {
       dl.download = "imgmap";
       document.body.appendChild(dl);
       console.log(dl.href);
-      postdata('http://192.168.100.161:60146/print',{
+      postdata('http://127.0.0.1:60146/print',{
         "data" : dl.href
       })
       console.log("Complete");
