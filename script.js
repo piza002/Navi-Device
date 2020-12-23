@@ -144,6 +144,7 @@ function runSpeech() {
   var output = document.getElementById("tbSearch");
   var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
   var recognition = new SpeechRecognition();
+  recognition.lang = 'th-TH';
   recognition.onstart = function() 
   {
   };  
