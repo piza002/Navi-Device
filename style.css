@@ -29,8 +29,8 @@
 }
 #map 
 {
-    height: 500px;
     width: 40%;
+    padding-top:34% ;
     margin-left: 0%;
     border: 0px;
 	border-radius: 20px;
