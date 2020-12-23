@@ -26,8 +26,7 @@ function initMap()
           position: pos,
           map: map,
         });
-  })
-  /*if (navigator.geolocation) 
+  })  /*if (navigator.geolocation) 
   {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -120,7 +119,7 @@ function linkmap(buildname,aliasname)
 {
   var maplink="https://www.google.com/maps/dir/"+SelfLink+"/"+GoogleLink+"/@"+GoogleLink+",16z";
   document.getElementById("imgmap").src="https://api.qrserver.com/v1/create-qr-code/?data="+maplink+"&amp;size=100x100";
-  document.getElementById("lbQr").innerHTML= "Your Destination (Marker B): " + buildname + ',' + aliasname;
+  document.getElementById("lbQr").innerHTML="Your Destination (Marker B): "+"<br>"+buildname+"<br>"+aliasname;
 }
 
 function clearmap()
@@ -172,10 +171,12 @@ function takeshot() {
       dl.download = "imgmap";
       document.body.appendChild(dl);
       console.log(dl.href);
-      postdata('http://192.168.100.161:60146/print',{
+      postdata('http://127.0.0.1:60146/print',{
         "data" : dl.href
       })
-    }) 
+      console.log("Complete");
+    })
+     
 }
 async function postdata(url='',data = {})
 {
@@ -194,3 +195,4 @@ async function postdata(url='',data = {})
           
   });
 }
+
