@@ -12,7 +12,7 @@ function initMap()
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  fetch('http://127.0.0.1:8888/gps')
+  /*fetch('http://quiet-harbor-07073.herokuapp.com/getlatlng')
   .then((resp)=>resp.json())
   .then(function(data)
   {
@@ -26,7 +26,9 @@ function initMap()
           position: pos,
           map: map,
         });
-  })  /*if (navigator.geolocation) 
+  }) */
+  const infoWindow = new google.maps.InfoWindow();
+  if (navigator.geolocation) 
   {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -49,14 +51,16 @@ function initMap()
   } else 
   {
     handleLocationError(false, infoWindow, map.getCenter());
-  }*/
+  }
   document.getElementById("btImg").disabled=true;
 }
   
 function getMap()
 {
-  var name = document.getElementById("tbSearch").value;
+  document.getElementById("btTalk").disabled=false;
+  clearBt();
   Selfmarker.setMap(null);
+  var name = document.getElementById("tbSearch").value;
   if(name != "")
   {
     var url = "https://quiet-harbor-07073.herokuapp.com/getalias/"+name;
@@ -71,12 +75,36 @@ function getMap()
       }
       else
       {
-        lat = JSON.stringify(data[0]["lat"]);
-        lng = JSON.stringify(data[0]["lng"]);
-        GoogleLink=lat+","+lng;
-        gotoMap(lat,lng);
-        linkmap(data[0]["name"],name);
-        document.getElementById("btImg").disabled=false;
+        if(data.length>1)
+        {
+          clearmap();
+          btList = data.length;
+          for(var i = 0;i<data.length;i++)
+          {
+            var button = document.createElement("button");
+            button.id = "buttonlist"+(i);
+            button.className = "btlist";
+            button.onclick=function()
+            {
+              var name = document.getElementById("tbSearch");
+              name.value = this.innerHTML;
+              getMap();
+            }
+            button.innerHTML = data[i]["name"];
+            var btContainer = document.getElementById("btContainer");
+            btContainer.appendChild(button);
+            btContainer.appendChild(document.createTextNode("\u00A0"));
+          }
+        }
+        else
+        {
+          lat = JSON.stringify(data[0]["lat"]);
+          lng = JSON.stringify(data[0]["lng"]);
+          GoogleLink=lat+","+lng;
+          gotoMap(lat,lng);
+          linkmap(data[0]["name"],name);
+          document.getElementById("btImg").disabled=false;
+        }
       }
     });
   }
@@ -89,7 +117,6 @@ function getMap()
 
 function gotoMap(bdlat,bdlng)
 {
-  Selfmarker.setMap(null);
   var diService = new google.maps.DirectionsService();
   if(diDisplay != null) 
   {
@@ -126,6 +153,7 @@ function linkmap(buildname,aliasname)
 
 function clearmap()
 {
+  document.getElementById("btImg").disabled=true;
   document.getElementById("lbQr").innerHTML="";
   document.getElementById("imgmap").src="";
   if(diDisplay != null) 
@@ -141,6 +169,7 @@ function clearmap()
 }
 
 function runSpeech() {
+  document.getElementById("btTalk").disabled=true;
   var output = document.getElementById("tbSearch");
   var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
   var recognition = new SpeechRecognition();
@@ -175,7 +204,7 @@ function takeshot() {
       dl.download = "imgmap";
       document.body.appendChild(dl);
       console.log(dl.href);
-      postdata('http://127.0.0.1:60146/print',{
+      postdata('http://192.168.100.161:60146/print',{
         "data" : dl.href
       })
       console.log("Complete");
@@ -198,4 +227,13 @@ async function postdata(url='',data = {})
     body:JSON.stringify(data)
           
   });
+}
+
+function clearBt()
+{
+  var btContainer = document.getElementById("btContainer");
+  while(btContainer.firstChild) 
+  { 
+      btContainer.removeChild(btContainer.firstChild); 
+  }
 }
