@@ -4,7 +4,7 @@
     <title>Navigation Device</title>
     <script type="text/javascript" src="script.js"></script>
     <script
-      async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuf8EP85QQahHqLUeJs6A5bTdCBt3eMA4&callback=initMap"
+      async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
     ></script>
     <script src= "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"> </script> 
     <link rel="stylesheet" type="text/css" href="./style.css" />
@@ -21,13 +21,14 @@
     <div class="bt"> 
       <form>
         <input type="button" id="btSubmit" onclick="getMap()" value="Submit">
-        <input type="button" id="btTalk" onclick="runSpeech()" value="Put to Talk">
-        <input type="button" id="btImg" onclick="takeshot()" value="Print">
+        <input type="button" id="btTalk" onclick="runSpeech()" value="Push to Talk">
+        <input type="button" id="btImg" onclick="" value="Print">
       </form>   
     </div>
     &nbsp;
     <div id="mapall">
       <div id="map"></div>&nbsp;
+      <div id="btContainer"></div>
       <div class="qr">
         <img id = "imgmap" src="" alt="" title=""/>
         <br> 
