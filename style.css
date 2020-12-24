@@ -81,3 +81,20 @@ input[type="text"]
   background-color: #cccccc;
   color: #666666;
 }
+#btTalk:disabled,
+#btTalk[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+.btlist
+{
+    display: flex;
+    font-family: 'JetBrains Mono','Cordia News';
+    padding:10px;
+    background-color: #ffffff ;
+	color: #000000;
+	border: 0px;
+	cursor:pointer;
+	border-radius: 5px;
+}
