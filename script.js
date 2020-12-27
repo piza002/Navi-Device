@@ -272,7 +272,7 @@ async function testname(name)
   allName = "";
   for(var j=0;j<=countName;j++)
   {
-    allName += spName[j];
+    allName += spName[j]+" ";
   }
   if(countName==-1) allName=name;
   return allName;
