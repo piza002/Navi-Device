@@ -55,14 +55,14 @@ function initMap()
   document.getElementById("btImg").disabled=true;
 }
   
-function getMap()
+async function getMap()
 {
   document.getElementById("btTalk").disabled=false;
   clearBt();
   Selfmarker.setMap(null);
-  var name = document.getElementById("tbSearch").value;
-  if(name != "")
+  if(document.getElementById("tbSearch").value != "")
   {
+    var name = await testname(document.getElementById("tbSearch").value);
     var url = "https://quiet-harbor-07073.herokuapp.com/getalias/"+name;
     fetch(url)
     .then((resp)=>resp.json())
@@ -236,4 +236,44 @@ function clearBt()
   { 
       btContainer.removeChild(btContainer.firstChild); 
   }
+}
+
+async function testname(name)
+{
+  var spName = name.split(" ");
+  var allName="";
+  var countName=-1;
+  var previousLength=100;
+  for(var i=0;i<spName.length;i++)
+  {
+    allName+=spName[i]+" ";
+    var url = "https://quiet-harbor-07073.herokuapp.com/getalias/"+allName;
+    await fetch(url)
+    .then((resp)=>resp.json())
+    .then(function(data)
+    {
+      if(data!=null)
+      {
+        if(data.length==1)
+        {
+          countName = i ;
+        }
+        else if(data.length>0)
+        {
+          if(data.length<previousLength)
+          {
+            previousLength = data.length;
+            countName = i;
+          }
+        }
+      }
+    });
+  }
+  allName = "";
+  for(var j=0;j<=countName;j++)
+  {
+    allName += spName[j];
+  }
+  if(countName==-1) allName=name;
+  return allName;
 }
