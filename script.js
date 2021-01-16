@@ -176,9 +176,7 @@ function takeshot() {
     {
       var dl = document.createElement("a");
       dl.href = canvas.toDataURL();
-      dl.download = "imgmap";
       document.body.appendChild(dl);
-      console.log(dl.href);
       postdata('http://127.0.0.1:60146/print',{
         "data" : dl.href
       })
