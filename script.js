@@ -5,9 +5,9 @@ var GoogleLink;
 var SelfLink;
 var diDisplay;
 var recognition;
-function initMap()
+async function initMap()
 {
-  map = new google.maps.Map(document.getElementById("map"), 
+  map = await new google.maps.Map(document.getElementById("map"), 
   {
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -52,6 +52,11 @@ async function getMap()
       {
         if(data.length>1)
         {
+          var btContainer = document.getElementById("btContainer");
+          var h = document.createElement("h5");
+          var t = document.createTextNode("Please Select Your Choice");
+          h.appendChild(t);
+          btContainer.appendChild(h);
           clearmap();
           btList = data.length;
           for(var i = 0;i<data.length;i++)
@@ -180,6 +185,7 @@ function takeshot() {
       postdata('http://127.0.0.1:60146/print',{
         "data" : dl.href
       })
+      document.body.removeChild(dl);
       console.log("Complete");
     })
      
