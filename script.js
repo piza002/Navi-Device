@@ -27,6 +27,31 @@ async function initMap()
           map: map,
         });
   })
+  /*const infoWindow = new google.maps.InfoWindow();
+  if (navigator.geolocation) 
+  {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        pos = {
+          lat: parseFloat(position.coords.latitude),
+          lng: parseFloat(position.coords.longitude),
+        };
+        SelfLink = position.coords.latitude + "," + position.coords.longitude;
+        infoWindow.open(map);
+        map.setCenter(pos);
+        Selfmarker = new google.maps.Marker({
+          position: pos,
+          map: map,
+        });
+      },
+      () => {
+        handleLocationError(true, infoWindow, map.getCenter());
+      }
+    );
+  } else 
+  {
+    handleLocationError(false, infoWindow, map.getCenter());
+  }*/
   document.getElementById("btImg").disabled=true;
 }
   
@@ -39,7 +64,7 @@ async function getMap()
   {
     var name = await testname(document.getElementById("tbSearch").value);
     var url = "https://quiet-harbor-07073.herokuapp.com/getalias/"+name;
-    fetch(url)
+    await fetch(url)
     .then((resp)=>resp.json())
     .then(function(data)
     {
@@ -87,6 +112,10 @@ async function getMap()
         }
       }
     });
+    await postdata("http://127.0.0.1:60146/reset",{
+      "countertime" : 0
+    });
+    window.setTimeout(clearmap,10000);
   }
   else 
   {
@@ -133,9 +162,11 @@ function linkmap(buildname,aliasname)
 
 function clearmap()
 {
+  window.clearTimeout();
   document.getElementById("btImg").disabled=true;
   document.getElementById("lbQr").innerHTML="";
   document.getElementById("imgmap").src="";
+  document.getElementById("tbSearch").value="";
   if(diDisplay != null) 
   {
     diDisplay.setMap(null);
@@ -181,12 +212,15 @@ function takeshot() {
     {
       var dl = document.createElement("a");
       dl.href = canvas.toDataURL();
+      /*dl.download = "imgmap";
       document.body.appendChild(dl);
+      dl.click();
+      document.body.removeChild(dl);*/
       postdata('http://127.0.0.1:60146/print',{
         "data" : dl.href
       })
-      document.body.removeChild(dl);
       console.log("Complete");
+      clearmap();
     })
      
 }
@@ -248,6 +282,7 @@ async function testname(name)
       }
     });
   }
+  console.log(countName);
   allName = "";
   for(var j=0;j<=countName;j++)
   {
