@@ -115,7 +115,7 @@ async function getMap()
     await postdata("http://127.0.0.1:60146/reset",{
       "countertime" : 0
     });
-    window.setTimeout(clearmap,10000);
+    window.setTimeout(clearmap,300000);
   }
   else 
   {
