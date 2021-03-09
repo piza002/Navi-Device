@@ -12,7 +12,7 @@ async function initMap()
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  fetch('http://127.0.0.1:60146/gps')
+  await fetch('http://127.0.0.1:60146/gps')
   .then((resp)=>resp.json())
   .then(function(data)
   {
