@@ -112,9 +112,7 @@ async function getMap()
         }
       }
     });
-    await postdata("http://127.0.0.1:60146/reset",{
-      "countertime" : 0
-    });
+    await fetch("http://127.0.0.1:60146/reset");
     window.setTimeout(clearmap,300000);
   }
   else 
