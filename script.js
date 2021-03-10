@@ -189,6 +189,7 @@ function runSpeech() {
   recognition.onspeechend = function() 
   {
     recognition.stop();
+    document.getElementById("btTalk").disabled=false;
   };
   recognition.onresult = function(event) 
   {
