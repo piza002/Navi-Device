@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="script.js"></script>
     <script
-      async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async
     ></script>
     <script src= "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"> </script> 
     <link rel="stylesheet" type="text/css" href="./style.css" />
@@ -18,16 +18,15 @@
         <input type="text" id="tbSearch" name="build">
       </form>
     </div>
-    <br>
-    <div class="bt"> 
+    <button id="btTalk" onclick="runSpeech()">&nbsp;&nbsp;<i class="fa fa-microphone"></i>&nbsp;&nbsp;</button>
+    <div class="bt">
       <form>
         <button id="btHome" onclick="clearmap()"><i class="fa fa-home"></i> Home</button>
-        <button id="btTalk" onclick="runSpeech()">&nbsp;&nbsp;<i class="fa fa-microphone"></i>&nbsp;&nbsp;</button>
-        <input type="button" id="btSubmit" onclick="getMap()" value="Submit">
+        <!-- <button id="btTalk" onclick="runSpeech()">&nbsp;&nbsp;<i class="fa fa-microphone"></i>&nbsp;&nbsp;</button> -->
+        <!-- <input type="button" id="btSubmit" onclick="getMap()" value="Submit"> -->
         <input type="button" id="btImg" onclick="takeshot()" value="Print">
       </form>   
     </div>
-    &nbsp;
     <div id="mapall">
       <div id="map"></div>&nbsp;
       <div id="btContainer"></div>
