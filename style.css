@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap');
-
+h1
+{
+    margin: 5px;
+}
 .bt
 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5px;
 }
-#HeadText,#action,h3,.input
+#HeadText,#action,h3,.input,#btTalk
 {
     display: flex;
     justify-content: center;
@@ -49,14 +53,20 @@ body
 }
 #btTalk
 {
+    margin : auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     font-family: 'JetBrains Mono','Cordia News';
+    font-size:large;
     padding:10px;
-    background-color: #ffffff ;
+    background-color: #10bd00;
 	border: 0px;
     font-weight: bold;   
 	cursor:pointer;
 	border-radius: 5px;
-    color: #10bd00;
+    color: #ffffff;
+    width: 334px;
+
 }
 #btSubmit,#btImg,#btHome
 {
@@ -67,14 +77,15 @@ body
 	border: 0px;
 	cursor:pointer;
 	border-radius: 5px;
+    width: 162px;
 }
 input[type="text"]
 {
     font-family: 'Kanit','sans-serif';
     width: 95%;
     height: 30px;
-    padding-left: 2.5%;
-    padding-right: 2.5%;
+    /*padding-left: 2.5%;*/
+    padding-right: 3%;
     font-size: 16px;
 }
 #imgmap
