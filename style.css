@@ -116,8 +116,9 @@ input[type="text"]
     font-family: 'JetBrains Mono','Cordia News';
     padding:10px;
     background-color: #ffffff ;
-	color: #000000;
-	border: 0px;
-	cursor:pointer;
-	border-radius: 5px;
+    color: #000000;
+    border: 0px;
+    cursor:pointer;
+    border-radius: 5px;
+    font-size: larger;
 }
