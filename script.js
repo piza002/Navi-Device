@@ -211,14 +211,13 @@ function takeshot() {
     {
       var dl = document.createElement("a");
       dl.href = canvas.toDataURL();
-      /*dl.download = "imgmap";
+      dl.download = "imgmap";
       document.body.appendChild(dl);
-      dl.click();
-      document.body.removeChild(dl);*/
       postdata('http://127.0.0.1:60146/print',{
         "data" : dl.href
       })
       console.log("Complete");
+      document.body.removeChild(dl);
       clearmap();
     })
      
