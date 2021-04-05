@@ -207,7 +207,7 @@ async function takeshot() {
       proxy: "server.js",
       useCORS: true,
     }).then( 
-    function (canvas) 
+    async function (canvas) 
     {
       var dl = document.createElement("a");
       dl.href = canvas.toDataURL();
