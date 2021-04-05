@@ -218,6 +218,7 @@ async function takeshot() {
       })
       console.log("Complete");
       document.body.removeChild(dl);
+      alert("Printing");
       clearmap();
     })
      
