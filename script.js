@@ -200,7 +200,7 @@ function runSpeech() {
   recognition.start();
 }
 
-function takeshot() { 
+async function takeshot() { 
   let div = document.getElementById("mapall");
   html2canvas(div,
     {
@@ -213,7 +213,7 @@ function takeshot() {
       dl.href = canvas.toDataURL();
       dl.download = "imgmap";
       document.body.appendChild(dl);
-      postdata('http://127.0.0.1:60146/print',{
+      await postdata('http://127.0.0.1:60146/print',{
         "data" : dl.href
       })
       console.log("Complete");
